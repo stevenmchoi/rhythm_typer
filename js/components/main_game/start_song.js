@@ -3,12 +3,10 @@ import renderTextField from "../text_field/text_field";
 import backButton from "./back_button";
 import inButtonListener from "../../actions/in_button_listener";
 import removeAllListeners from "../../actions/remove_all_listeners";
-import handleBeats from "../../actions/beat_handling";
+// import handleBeats from "../../actions/beat_handling";
+import { playSong1 } from "../../actions/song_handling";
 
 export default function startSong() {
-	const song1 = document.getElementById("song1");
-	song1.volume = 0.3;
-
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	removeAllListeners();
 
@@ -21,11 +19,11 @@ export default function startSong() {
 
 	inButtonListener(back_dimens, event, backButton);
 
-	song1.play();
+	playSong1().play();
 
 	keyboard();
 
 	renderTextField();
 
-	handleBeats();
+	// handleBeats();
 }

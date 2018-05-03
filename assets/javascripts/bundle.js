@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,7 +79,7 @@ var _main_game = __webpack_require__(2);
 
 var _main_game2 = _interopRequireDefault(_main_game);
 
-var _back_button = __webpack_require__(7);
+var _back_button = __webpack_require__(3);
 
 var _back_button2 = _interopRequireDefault(_back_button);
 
@@ -146,11 +146,11 @@ var _remove_all_listeners = __webpack_require__(0);
 
 var _remove_all_listeners2 = _interopRequireDefault(_remove_all_listeners);
 
-var _start_song = __webpack_require__(23);
+var _start_song = __webpack_require__(16);
 
 var _start_song2 = _interopRequireDefault(_start_song);
 
-var _in_button_listener = __webpack_require__(25);
+var _in_button_listener = __webpack_require__(9);
 
 var _in_button_listener2 = _interopRequireDefault(_in_button_listener);
 
@@ -187,20 +187,28 @@ function mainGame() {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = renderTextBox;
-function renderTextBox() {
-	for (var location = textStartLocation; location < 1200; location += 60) {
-		ctx.beginPath();
-		ctx.moveTo(location, 0);
-		ctx.lineTo(location, 425);
-		ctx.strokeStyle = '#ccc';
-		ctx.stroke();
-	}
+exports.default = backButton;
 
-	ctx.strokeStyle = 'black';
-	ctx.strokeRect(textStartLocation, 300.5, 1200, 125);
-	ctx.fillStyle = '#000';
-	ctx.fill();
+var _song_handling = __webpack_require__(4);
+
+var _root = __webpack_require__(1);
+
+var _root2 = _interopRequireDefault(_root);
+
+var _remove_all_listeners = __webpack_require__(0);
+
+var _remove_all_listeners2 = _interopRequireDefault(_remove_all_listeners);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function backButton() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	(0, _remove_all_listeners2.default)();
+
+	(0, _song_handling.playSong1)().pause();
+	(0, _song_handling.playSong1)().currentTime = 0;
+
+	(0, _root2.default)();
 }
 
 /***/ }),
@@ -213,13 +221,12 @@ function renderTextBox() {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = randCommonWord;
+var playSong1 = exports.playSong1 = function playSong1() {
+	var song1 = document.getElementById("song1");
+	song1.volume = 0.3;
 
-var _filtered = __webpack_require__(11);
-
-function randCommonWord() {
-	return _filtered.commonMoreThan_2[Math.floor(Math.random() * _filtered.commonMoreThan_2.length)];
-}
+	return song1;
+};
 
 /***/ }),
 /* 5 */
@@ -233,15 +240,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = handleKeypress;
 
-var _rand_common_word = __webpack_require__(4);
+var _rand_common_word = __webpack_require__(6);
 
 var _rand_common_word2 = _interopRequireDefault(_rand_common_word);
 
-var _render_text = __webpack_require__(6);
+var _render_text = __webpack_require__(7);
 
 var _render_text2 = _interopRequireDefault(_render_text);
 
-var _render_text_box = __webpack_require__(3);
+var _render_text_box = __webpack_require__(8);
 
 var _render_text_box2 = _interopRequireDefault(_render_text_box);
 
@@ -284,6 +291,24 @@ function handleKeypress(event) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.default = randCommonWord;
+
+var _filtered = __webpack_require__(11);
+
+function randCommonWord() {
+	return _filtered.commonMoreThan_2[Math.floor(Math.random() * _filtered.commonMoreThan_2.length)];
+}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 exports.default = renderText;
 function renderText() {
 	var charLocation = textStartLocation;
@@ -311,7 +336,7 @@ function renderText() {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -320,33 +345,67 @@ function renderText() {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = backButton;
+exports.default = renderTextBox;
+function renderTextBox() {
+	for (var location = textStartLocation; location < 1200; location += 60) {
+		ctx.beginPath();
+		ctx.moveTo(location, 0);
+		ctx.lineTo(location, 425);
+		ctx.strokeStyle = '#ccc';
+		ctx.stroke();
+	}
 
-var _root = __webpack_require__(1);
-
-var _root2 = _interopRequireDefault(_root);
-
-var _remove_all_listeners = __webpack_require__(0);
-
-var _remove_all_listeners2 = _interopRequireDefault(_remove_all_listeners);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import { song1 } from "../../actions/song_handling";
-function backButton() {
-	var song1 = document.getElementById("song1");
-
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	(0, _remove_all_listeners2.default)();
-
-	song1.pause();
-	song1.currentTime = 0;
-
-	(0, _root2.default)();
+	ctx.strokeStyle = 'black';
+	ctx.strokeRect(textStartLocation, 300.5, 1200, 125);
+	ctx.fillStyle = '#000';
+	ctx.fill();
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = inButtonListener;
+function inButton(_ref, event) {
+	var _ref2 = _slicedToArray(_ref, 4),
+	    button_x = _ref2[0],
+	    button_y = _ref2[1],
+	    button_len = _ref2[2],
+	    button_height = _ref2[3];
+
+	var x_coord = event.offsetX;
+	var y_coord = event.offsetY;
+
+	return x_coord > button_x && x_coord < button_x + button_len && y_coord > button_y && y_coord < button_y + button_height;
+}
+
+function inButtonListener(dimens, event, btn_fn) {
+	canvas.addEventListener("mousemove", function (event) {
+		if (inButton(dimens, event)) {
+			document.body.style.cursor = "pointer";
+		} else {
+			document.body.style.cursor = "default";
+		}
+	});
+
+	canvas.addEventListener("click", function (event) {
+		if (inButton(dimens, event)) {
+			btn_fn();
+		}
+	});
+}
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -361,73 +420,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // const root = require('./components/root');
 
 document.addEventListener("DOMContentLoaded", _root2.default);
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _dict = __webpack_require__(10);
-
-var _render_text_box = __webpack_require__(3);
-
-var _render_text_box2 = _interopRequireDefault(_render_text_box);
-
-var _rand_common_word = __webpack_require__(4);
-
-var _rand_common_word2 = _interopRequireDefault(_rand_common_word);
-
-var _keypress_handling = __webpack_require__(5);
-
-var _keypress_handling2 = _interopRequireDefault(_keypress_handling);
-
-var _render_text = __webpack_require__(6);
-
-var _render_text2 = _interopRequireDefault(_render_text);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function renderRandWord() {
-	randWord = (0, _rand_common_word2.default)();
-
-	(0, _render_text2.default)();
-
-	document.addEventListener('keypress', _keypress_handling2.default);
-}
-
-exports.default = function () {
-	window.typedKeys = [];
-	window.randWord = '';
-	window.textStartLocation = 360 + 0.5;
-
-	// (null on initial step; need )
-	// listen to key that was pressed
-	// detect key pressed
-	// check if key is right or wrong
-	// mark right or wrong
-
-	// TODO: render last character
-	(0, _render_text_box2.default)();
-	renderRandWord();
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var dict = exports.dict = ['Hello World!', 'alleviate'];
 
 /***/ }),
 /* 11 */
@@ -556,62 +548,19 @@ function sleep(milliseconds) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-var keyboard = exports.keyboard = function keyboard() {
-	var mac_keys_img = new Image();
-	mac_keys_img.onload = function () {
-		ctx.drawImage(mac_keys_img, 80, 70, 1300, 360, 0, 480, 1195, 319);
-	};
-	mac_keys_img.src = "assets/images/mackeys.png";
-};
-
-/***/ }),
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = handleBeats;
-// import { song1 } from './song_handling';
-// import sleep from "./sleep";
-
-function handleBeats() {
-	var song1 = document.getElementById("song1");
-	song1.volume = 0.3;
-	song1.play();
-}
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
 exports.default = startSong;
 
-var _keyboard = __webpack_require__(16);
+var _keyboard = __webpack_require__(17);
 
-var _text_field = __webpack_require__(9);
+var _text_field = __webpack_require__(18);
 
 var _text_field2 = _interopRequireDefault(_text_field);
 
-var _back_button = __webpack_require__(7);
+var _back_button = __webpack_require__(3);
 
 var _back_button2 = _interopRequireDefault(_back_button);
 
-var _in_button_listener = __webpack_require__(25);
+var _in_button_listener = __webpack_require__(9);
 
 var _in_button_listener2 = _interopRequireDefault(_in_button_listener);
 
@@ -619,17 +568,12 @@ var _remove_all_listeners = __webpack_require__(0);
 
 var _remove_all_listeners2 = _interopRequireDefault(_remove_all_listeners);
 
-var _beat_handling = __webpack_require__(22);
-
-var _beat_handling2 = _interopRequireDefault(_beat_handling);
+var _song_handling = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function startSong() {
 	var _ctx;
-
-	var song1 = document.getElementById("song1");
-	song1.volume = 0.3;
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	(0, _remove_all_listeners2.default)();
@@ -643,18 +587,36 @@ function startSong() {
 
 	(0, _in_button_listener2.default)(back_dimens, event, _back_button2.default);
 
-	song1.play();
+	(0, _song_handling.playSong1)().play();
 
 	(0, _keyboard.keyboard)();
 
 	(0, _text_field2.default)();
 
-	(0, _beat_handling2.default)();
+	// handleBeats();
 }
+// import handleBeats from "../../actions/beat_handling";
 
 /***/ }),
-/* 24 */,
-/* 25 */
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var keyboard = exports.keyboard = function keyboard() {
+	var mac_keys_img = new Image();
+	mac_keys_img.onload = function () {
+		ctx.drawImage(mac_keys_img, 80, 70, 1300, 360, 0, 480, 1195, 319);
+	};
+	mac_keys_img.src = "assets/images/mackeys.png";
+};
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -664,37 +626,61 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _dict = __webpack_require__(19);
 
-exports.default = inButtonListener;
-function inButton(_ref, event) {
-	var _ref2 = _slicedToArray(_ref, 4),
-	    button_x = _ref2[0],
-	    button_y = _ref2[1],
-	    button_len = _ref2[2],
-	    button_height = _ref2[3];
+var _render_text_box = __webpack_require__(8);
 
-	var x_coord = event.offsetX;
-	var y_coord = event.offsetY;
+var _render_text_box2 = _interopRequireDefault(_render_text_box);
 
-	return x_coord > button_x && x_coord < button_x + button_len && y_coord > button_y && y_coord < button_y + button_height;
+var _rand_common_word = __webpack_require__(6);
+
+var _rand_common_word2 = _interopRequireDefault(_rand_common_word);
+
+var _keypress_handling = __webpack_require__(5);
+
+var _keypress_handling2 = _interopRequireDefault(_keypress_handling);
+
+var _render_text = __webpack_require__(7);
+
+var _render_text2 = _interopRequireDefault(_render_text);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function renderRandWord() {
+	randWord = (0, _rand_common_word2.default)();
+
+	(0, _render_text2.default)();
+
+	document.addEventListener('keypress', _keypress_handling2.default);
 }
 
-function inButtonListener(dimens, event, btn_fn) {
-	canvas.addEventListener("mousemove", function (event) {
-		if (inButton(dimens, event)) {
-			document.body.style.cursor = "pointer";
-		} else {
-			document.body.style.cursor = "default";
-		}
-	});
+exports.default = function () {
+	window.typedKeys = [];
+	window.randWord = '';
+	window.textStartLocation = 360 + 0.5;
 
-	canvas.addEventListener("click", function (event) {
-		if (inButton(dimens, event)) {
-			btn_fn();
-		}
-	});
-}
+	// (null on initial step; need )
+	// listen to key that was pressed
+	// detect key pressed
+	// check if key is right or wrong
+	// mark right or wrong
+
+	// TODO: render last character
+	(0, _render_text_box2.default)();
+	renderRandWord();
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var dict = exports.dict = ['Hello World!', 'alleviate'];
 
 /***/ })
 /******/ ]);

@@ -1,4 +1,4 @@
-// import { song1 } from './song_handling';
+import { playSong1 } from "./song_handling";
 // import sleep from "./sleep";
 
 export default function handleBeats() {
