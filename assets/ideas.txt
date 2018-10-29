@@ -21,7 +21,20 @@ Keyboard:
 
 Research:
 
+MIREX:
+* http://lmgtfy.com/?q=mirex+music
+* https://link.springer.com/chapter/10.1007/978-3-642-11674-2_5
+* https://dl.acm.org/citation.cfm?id=3037447
+* https://www.researchgate.net/publication/240949505_The_Music_Information_Retrieval_Evaluation_eXchange_MIREX
+* https://en.wikipedia.org/wiki/International_Society_for_Music_Information_Retrieval
+* http://www.dlib.org/dlib/december06/downie/12downie.html
+
+Aubio:
+* https://aubio.org/pd-aubio/
+* https://git.aubio.org/?p=pd-aubio.git;a=summary
+
 Beatmapping:
+* https://www.reddit.com/r/gamedev/comments/13y26t/how_do_rhythm_games_stay_in_sync_with_the_music/
 * http://mziccard.me/2015/05/28/beats-detection-algorithms-1/
 * https://www.npmjs.com/package/music-tempo
 * https://codegolf.stackexchange.com/questions/18543/find-the-beats-in-an-mp3-file
@@ -40,6 +53,8 @@ Similar game:
 
 Other games:
 * https://scratch.mit.edu/projects/2102820/
+* https://github.com/edap/KeyboardKaraoke
+* https://github.com/hliutongco/typing-karaoke
 
 ----------------------------------------
 
