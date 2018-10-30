@@ -4,8 +4,8 @@
   "description": "## Overview Rhythm Typer is simply a rhythm game with typing game elements, overlapping the goals of each.",
   "main": "index.js",
   "engines": {
-    "node": "8.9.4",
-    "npm": "5.8.0"
+    "node": "10.9.0",
+    "npm": "6.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
